@@ -1,38 +1,63 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 const Transactions = () => {
+    const [transactions, setTransactions] = useState([]);
+    useEffect(() => {
+        axios
+            .get("/admin/transactions")
+            .then((res) => {
+                setTransactions(res.data.transactions);
+            })
+            .catch((err) => {
+                toast.error("something went wrong");
+            });
+    });
+
+    
+
     return (
         <div>
             <div className="overflow-x-auto">
-                <table className="table table-zebra">
+                <table className="table  text-black">
                     <thead>
                         <tr>
-                            <th></th>
-                            <th>Name</th>
-                            <th>Job</th>
-                            <th>Favorite Color</th>
+                            <th scope="col" className="px-6 py-3">
+                                Transaction ID
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                Account
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                Date
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                Amount
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                Type
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                Status
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th>1</th>
-                            <td>Cy Ganderton</td>
-                            <td>Quality Control Specialist</td>
-                            <td>Blue</td>
-                        </tr>
-                        <tr>
-                            <th>2</th>
-                            <td>Hart Hagerty</td>
-                            <td>Desktop Support Technician</td>
-                            <td>Purple</td>
-                        </tr>
-
-                        <tr>
-                            <th>3</th>
-                            <td>Brice Swyre</td>
-                            <td>Tax Accountant</td>
-                            <td>Red</td>
-                        </tr>
+                        {transactions?.map((tns) => {
+                            return (
+                                <tr key={tns._id}>
+                                    <td scope="row" className="px-6 py-4 ">
+                                        {tns?.transactionId}
+                                    </td>
+                                    <td className="px-6 py-4">{tns?.accountNumber}</td>
+                                    <td className="px-6 py-4">{new Date(tns?.createdAt).toDateString().slice(4)}</td>
+                                    <td className="px-6 py-4">{tns?.amount}</td>
+                                    <td className="px-6 py-4 text-right">{tns?.transactionType}</td>
+                                    <td className="px-6 py-4 text-right">{tns?.status}</td>
+                                </tr>
+                            );
+                        })}
                     </tbody>
                 </table>
             </div>

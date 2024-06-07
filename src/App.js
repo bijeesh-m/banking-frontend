@@ -7,6 +7,7 @@ import AdminLogin from "./pages/adimin/Login";
 import AdminDashboard from "./pages/adimin/Dashboard";
 import Dashboard from "./pages/user/Dashboard";
 import Transations from "./pages/user/Transations";
+import AdminTransations from "./pages/adimin/Transactions";
 import Home from "./pages/user/Home";
 import toast, { Toaster } from "react-hot-toast";
 import { createContext, useEffect, useState } from "react";
@@ -35,7 +36,6 @@ function App() {
                 })
                 .catch((err) => {
                     setLoading(false);
-                    toast.error("Something went wrong");
                 });
         };
         getUser();
@@ -51,13 +51,10 @@ function App() {
                 })
                 .catch((err) => {
                     setLoading1(false);
-                    toast.error("Something went wrong");
                 });
         };
         getAdmin();
     }, [admin?.username]);
-
-    console.log(admin, user);
 
     if (loading) {
         return (
@@ -69,7 +66,7 @@ function App() {
     return (
         <div>
             <Toaster />
-            <myContext.Provider value={{ user, setUser, admin, setAdmin ,loading1, setLoading1}}>
+            <myContext.Provider value={{ user, setUser, admin, setAdmin, loading1, setLoading1 }}>
                 <Routes>
                     <Route path="/register" element={<Register />} />
                     <Route path="/login" element={<Login />} />
@@ -81,7 +78,7 @@ function App() {
                     </Route>
                     <Route path="/admin" element={<AdminProtectRoute element={<AdminDashboard />} />}>
                         <Route index element={<Users />} />
-                        <Route path="/admin/transactions" element={<Transations />} />
+                        <Route path="/admin/transactions" element={<AdminTransations />} />
                     </Route>
                 </Routes>
             </myContext.Provider>

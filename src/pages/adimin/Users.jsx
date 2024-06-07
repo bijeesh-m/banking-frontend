@@ -4,15 +4,15 @@ import toast from "react-hot-toast";
 
 const Users = () => {
     const [users, setUsers] = useState([]);
-    const [status, setStatus] = useState();
+    const [status, setStatus] = useState(false);
 
     const handleChange = (event, userId) => {
-        const toastId = toast.loading("loading..");
-        setStatus(event.target.value);
+        setStatus(true);
+        const newState = event.target.value;
         axios
-            .put(`/admin/accountAction/${userId}`, { status })
+            .put(`/admin/accountAction/${userId}`, { newState })
             .then((res) => {
-                toast.success("success", { id: toastId });
+                setUsers(res.data.users);
             })
             .catch((err) => {
                 console.log(err);
@@ -27,9 +27,11 @@ const Users = () => {
                 setUsers(res.data?.users);
             })
             .catch((err) => {
+                console.log(err);
                 toast.error("Something went wrong");
             });
     }, []);
+
     return (
         <div>
             <div className="overflow-x-auto">
@@ -39,13 +41,13 @@ const Users = () => {
                             <th>TUsername</th>
                             <th>Account No</th>
                             <th>Balance</th>
-                            <th>Type</th>
+                            <th>AccountStatus</th>
                         </tr>
                     </thead>
                     <tbody>
                         {users?.map((user) => {
                             return (
-                                <tr>
+                                <tr key={user._id}>
                                     <td>{user?.username}</td>
                                     <td>{user?.accountNumber}</td>
                                     <td>{user?.balance}</td>

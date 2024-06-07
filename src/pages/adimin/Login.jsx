@@ -32,7 +32,6 @@ const Login = () => {
                     localStorage.setItem("adminToken", res.data?.token);
                     setAdmin(res.data?.admin);
                     navigate("/admin");
-                    // window.location.reload();
                 })
                 .catch((err) => {
                     if (err.response) {

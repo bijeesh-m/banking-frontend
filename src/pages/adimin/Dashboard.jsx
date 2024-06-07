@@ -22,15 +22,15 @@ const Dashboard = () => {
     };
     return (
         <div className=" h-screen overflow-y-scroll">
-            <nav class="bg-blue-500 p-4 flex items-center justify-between">
+            <nav className="bg-blue-500 p-4 flex items-center justify-between">
                 <div className=" flex items-center gap-2">
                     <label htmlFor="my-drawer" className=" drawer-button md:hidden">
                         <IoMenu size={40} />
                     </label>
-                    <h1 class="text-white text-xl font-semibold">BANKING</h1>
+                    <h1 className="text-white text-xl font-semibold">BANKING</h1>
                 </div>
-                <div class="flex items-center space-x-4 px-5 font-bold">
-                    <span class="text-white">{admin?.username}</span>
+                <div className="flex items-center space-x-4 px-5 font-bold">
+                    <span className="text-white">{admin?.username}</span>
                     <FaUserCircle size={30} />
                 </div>
             </nav>
@@ -44,14 +44,14 @@ const Dashboard = () => {
                             <label htmlFor="my-drawer" className=" drawer-button md:hidden">
                                 <IoMenu size={40} />
                             </label>
-                            <h1 class=" text-xl font-semibold  text-black">BANKING</h1>
+                            <h1 className=" text-xl font-semibold  text-black">BANKING</h1>
                         </div>
                         <div className=" py-10 text-xl">
                             <Link to={"/admin"}>
                                 <p className=" hover:bg-gray-200 rounded-md py-3 cursor-pointer  px-2">Users</p>
                             </Link>
 
-                            <Link to={"/transations"}>
+                            <Link to={"/admin/transactions"}>
                                 <p className=" hover:bg-gray-200 rounded-md py-3 cursor-pointer  px-2">Transations</p>
                             </Link>
                             <Link to={"/"}>
@@ -72,8 +72,8 @@ const Dashboard = () => {
                         <p className=" hover:bg-gray-200 rounded-md py-3 cursor-pointer  px-2">Users</p>
                     </Link>
 
-                    <Link to={"/admin/transations"}>
-                        <p className=" hover:bg-gray-200 rounded-md py-3 cursor-pointer  px-2">Transations</p>
+                    <Link to={"/admin/transactions"}>
+                        <p className=" hover:bg-gray-200 rounded-md py-3 cursor-pointer  px-2">Transactions</p>
                     </Link>
 
                     <p className=" hover:bg-gray-200 rounded-md py-3 cursor-pointer  px-2" onClick={handleSignOut}>

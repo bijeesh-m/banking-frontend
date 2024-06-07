@@ -36,7 +36,10 @@ const Transations = () => {
                     <tbody>
                         {user?.transactions.map((tns) => {
                             return (
-                                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <tr
+                                    key={tns._id}
+                                    className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                                >
                                     <td scope="row" className="px-6 py-4 ">
                                         {tns?.transactionId}
                                     </td>
