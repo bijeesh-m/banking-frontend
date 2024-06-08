@@ -15,7 +15,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import AdminProtectRoute from "./components/AdminProtectRout";
 import Users from "./pages/adimin/Users";
 
-axios.defaults.baseURL = "http://localhost:3005/";
+axios.defaults.baseURL = "https://banking-server-ashy.vercel.app/";
 axios.defaults.withCredentials = true;
 
 export const myContext = createContext();
