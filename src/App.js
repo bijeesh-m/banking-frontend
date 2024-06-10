@@ -9,13 +9,13 @@ import Dashboard from "./pages/user/Dashboard";
 import Transations from "./pages/user/Transations";
 import AdminTransations from "./pages/adimin/Transactions";
 import Home from "./pages/user/Home";
-import toast, { Toaster } from "react-hot-toast";
+import  { Toaster } from "react-hot-toast";
 import { createContext, useEffect, useState } from "react";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminProtectRoute from "./components/AdminProtectRout";
 import Users from "./pages/adimin/Users";
 
-axios.defaults.baseURL = "https://banking-server-ashy.vercel.app/";
+axios.defaults.baseURL = "http://localhost:3005/";
 axios.defaults.withCredentials = true;
 
 export const myContext = createContext();

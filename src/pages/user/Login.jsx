@@ -10,6 +10,8 @@ const Login = () => {
         password: "",
     });
 
+    const {setUser} = useContext(myContext)
+
     const navigate = useNavigate();
     const [formErrors, setFormErrors] = useState({});
 
@@ -28,8 +30,8 @@ const Login = () => {
                 .then((res) => {
                     toast.success("Login success");
                     localStorage.setItem("userToken", res.data?.token);
+                    setUser(res.data?.user)
                     navigate("/");
-                    window.location.reload();
                 })
                 .catch((err) => {
                     if (err.response) {
